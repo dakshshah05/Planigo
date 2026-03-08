@@ -19,70 +19,30 @@
 }
 
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 @keyframes marquee2 {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
 }
 @keyframes pulse2 {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 179, 0, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(255, 179, 0, 0);
-  }
-}
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 179, 0, 0.4); }
+  50%      { box-shadow: 0 0 0 10px rgba(255, 179, 0, 0); }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --orange: #ff8c00;
-  --gold: #ffb300;
-  --amber: #ff6b00;
-  --cyan: #00d4ff;
-  --dark: #0a0a0f;
+  --gold:   #ffb300;
+  --amber:  #ff6b00;
+  --cyan:   #00d4ff;
+  --dark:   #0a0a0f;
 }
 
 html {
@@ -99,10 +59,10 @@ body {
 }
 
 @media (pointer: coarse) {
-  body {
-    cursor: auto;
-  }
+  body { cursor: auto; }
 }
+
+/* ---------- Utility classes ---------- */
 
 .gradient-text {
   background: linear-gradient(135deg, #ff6b00 0%, #ffb300 45%, #00d4ff 100%);
@@ -134,42 +94,60 @@ body {
     rgba(255, 255, 255, 0.04);
 }
 
+/* ---------- Section spacing ---------- */
+
 .section-padding {
-  padding: 100px 24px;
+  padding: 80px 20px;
 }
 
 @media (min-width: 640px) {
   .section-padding {
-    padding: 100px 5%;
+    padding: 100px 40px;
   }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 1024px) {
   .section-padding {
-    padding: 64px 16px;
+    padding: 120px 60px;
   }
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0f;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 179, 0, 0.3);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 179, 0, 0.5);
+@media (min-width: 1280px) {
+  .section-padding {
+    padding: 140px 80px;
+  }
 }
 
-/* Reduced motion */
+/* ---------- Section title (shared sizing) ---------- */
+
+.section-title {
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+@media (min-width: 640px) {
+  .section-title { font-size: 36px; }
+}
+
+@media (min-width: 768px) {
+  .section-title { font-size: 42px; }
+}
+
+@media (min-width: 1024px) {
+  .section-title { font-size: 48px; }
+}
+
+/* ---------- Scrollbar ---------- */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb { background: rgba(255, 179, 0, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 179, 0, 0.5); }
+
+/* ---------- Accessibility ---------- */
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

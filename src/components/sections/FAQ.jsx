@@ -44,11 +44,11 @@ export default function FAQ({ className = '' }) {
     <section ref={sectionRef} className={`section-padding relative ${className}`}>
       <div className="max-w-3xl mx-auto">
         {/* Title */}
-        <div className="text-center mb-12">
-          <span className="text-xs uppercase tracking-[4px] text-[--gold]/60 mb-4 block">FAQ</span>
+        <div className="text-center mb-16">
+          <span className="text-xs uppercase tracking-[4px] text-[--gold]/60 mb-5 block">FAQ</span>
           <h2
             ref={titleRef}
-            className="text-3xl md:text-5xl font-extrabold font-[family-name:var(--font-syne)] text-white"
+            className="section-title font-extrabold font-[family-name:var(--font-syne)] text-white"
           >
             Got Questions?{' '}
             <span className="gradient-text">We&apos;ve Got Answers.</span>
@@ -56,7 +56,7 @@ export default function FAQ({ className = '' }) {
         </div>
 
         {/* Accordion */}
-        <div ref={listRef} className="glass rounded-2xl p-6 md:p-8 border border-white/5">
+        <div ref={listRef} className="glass rounded-3xl p-8 md:p-12 border border-white/5">
           {faqs.map((faq, i) => (
             <div key={i} className="faq-item">
               <AccordionItem

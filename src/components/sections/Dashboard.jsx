@@ -26,7 +26,6 @@ export default function Dashboard({ className = '' }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title clip-path reveal
       gsap.fromTo(titleRef.current,
         { clipPath: 'inset(0 100% 0 0)' },
         {
@@ -37,7 +36,6 @@ export default function Dashboard({ className = '' }) {
         }
       );
 
-      // Left content slide in
       gsap.from(leftRef.current, {
         x: -60,
         opacity: 0,
@@ -46,7 +44,6 @@ export default function Dashboard({ className = '' }) {
         scrollTrigger: { trigger: leftRef.current, start: 'top 80%' },
       });
 
-      // Right mockup scale up
       gsap.from(rightRef.current, {
         scale: 0.88,
         opacity: 0,
@@ -55,7 +52,6 @@ export default function Dashboard({ className = '' }) {
         scrollTrigger: { trigger: rightRef.current, start: 'top 75%' },
       });
 
-      // Donut SVG stroke animation
       if (donutRef.current) {
         const circumference = 2 * Math.PI * 70;
         const spent = (totalSpent / totalBudget) * circumference;
@@ -70,10 +66,8 @@ export default function Dashboard({ className = '' }) {
         );
       }
 
-      // Progress bars
       barsRef.current.forEach((bar, i) => {
         if (bar) {
-          const pct = (categories[i].amount / categories[i].total) * 100;
           gsap.from(bar, {
             width: 0,
             duration: 1,
@@ -84,7 +78,6 @@ export default function Dashboard({ className = '' }) {
         }
       });
 
-      // Status pills pop in
       statusRefs.current.forEach((pill, i) => {
         if (pill) {
           gsap.from(pill, {
@@ -97,7 +90,6 @@ export default function Dashboard({ className = '' }) {
         }
       });
 
-      // Counter animation for remaining
       if (remainingRef.current) {
         const obj = { val: 0 };
         gsap.to(obj, {
@@ -121,34 +113,34 @@ export default function Dashboard({ className = '' }) {
 
   return (
     <section ref={sectionRef} className={`section-padding relative ${className}`}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1280px] mx-auto">
         {/* Title */}
-        <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[4px] text-[--gold]/60 mb-4 block">Dashboard</span>
+        <div className="text-center mb-20">
+          <span className="text-xs uppercase tracking-[4px] text-[--gold]/60 mb-5 block">Dashboard</span>
           <h2
             ref={titleRef}
-            className="text-3xl md:text-5xl font-extrabold font-[family-name:var(--font-syne)] text-white"
+            className="section-title font-extrabold font-[family-name:var(--font-syne)] text-white"
           >
             Your Money.{' '}
             <span className="gradient-text">Fully In Control.</span>
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-start gap-16 xl:gap-20">
           {/* Left — Description */}
-          <div ref={leftRef} className="w-full lg:w-[40%]">
-            <h3 className="text-2xl font-bold font-[family-name:var(--font-syne)] text-white mb-4">
+          <div ref={leftRef} className="w-full lg:w-[38%] lg:pt-8">
+            <h3 className="text-2xl lg:text-3xl font-bold font-[family-name:var(--font-syne)] text-white mb-6">
               Real-Time Budget Tracking
             </h3>
-            <p className="text-white/40 leading-relaxed mb-6">
+            <p className="text-white/40 leading-[1.8] mb-8 text-base">
               Watch your spending in real-time. Every booking updates your dashboard instantly — so you always
               know exactly where your money is going and how much you have left.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {['Live expense tracking', 'Per-category breakdown', 'Smart alerts on overspend', 'Group split view'].map((feat, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[--gold]/10 flex items-center justify-center">
-                    <span className="text-[10px] text-[--gold]">✓</span>
+                <div key={i} className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full bg-[--gold]/10 flex items-center justify-center shrink-0">
+                    <span className="text-xs text-[--gold]">✓</span>
                   </div>
                   <span className="text-sm text-white/50">{feat}</span>
                 </div>
@@ -157,25 +149,23 @@ export default function Dashboard({ className = '' }) {
           </div>
 
           {/* Right — Dashboard Mockup */}
-          <div ref={rightRef} className="w-full lg:w-[60%]">
-            <div className="glass rounded-2xl p-6 md:p-8 border border-white/5">
+          <div ref={rightRef} className="w-full lg:w-[62%]">
+            <div className="glass rounded-3xl p-8 md:p-10 border border-white/5">
               {/* Header */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h4 className="text-sm font-semibold text-white mb-1">Trip: Bangalore Weekend</h4>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
+                  <h4 className="text-base font-semibold text-white mb-2">Trip: Bangalore Weekend</h4>
+                  <span className="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
                     ✓ Active
                   </span>
                 </div>
               </div>
 
               {/* Donut + Total */}
-              <div className="flex items-center gap-6 mb-6">
-                <div className="relative w-36 h-36 shrink-0">
+              <div className="flex items-center gap-8 mb-8">
+                <div className="relative w-40 h-40 shrink-0">
                   <svg viewBox="0 0 160 160" className="w-full h-full -rotate-90">
-                    {/* Background circle */}
                     <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="10" />
-                    {/* Progress arc */}
                     <circle
                       ref={donutRef}
                       cx="80" cy="80" r="70"
@@ -194,36 +184,36 @@ export default function Dashboard({ className = '' }) {
                     </defs>
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-xl font-bold gradient-text font-[family-name:var(--font-syne)]">85%</span>
-                    <span className="text-[10px] text-white/30">spent</span>
+                    <span className="text-2xl font-bold gradient-text font-[family-name:var(--font-syne)]">85%</span>
+                    <span className="text-xs text-white/30 mt-1">spent</span>
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs text-white/30 mb-1">Total Spent</p>
-                  <p className="text-2xl font-bold text-white font-[family-name:var(--font-syne)]">₹8,500</p>
-                  <p className="text-xs text-white/20 mt-1">Budget: ₹10,000</p>
+                  <p className="text-sm text-white/30 mb-1">Total Spent</p>
+                  <p className="text-3xl font-bold text-white font-[family-name:var(--font-syne)]">₹8,500</p>
+                  <p className="text-sm text-white/20 mt-2">Budget: ₹10,000</p>
                 </div>
               </div>
 
               {/* Category Bars */}
-              <div className="space-y-3 mb-6">
+              <div className="space-y-4 mb-8">
                 {categories.map((cat, i) => {
                   const pct = (cat.amount / cat.total) * 100;
                   return (
-                    <div key={cat.label} className="flex items-center gap-3">
-                      <span className="text-base w-6">{cat.icon}</span>
-                      <span className="text-xs text-white/40 w-20">{cat.label}</span>
-                      <div className="flex-1 h-4 bg-white/5 rounded-full overflow-hidden">
+                    <div key={cat.label} className="flex items-center gap-4">
+                      <span className="text-lg w-7">{cat.icon}</span>
+                      <span className="text-sm text-white/40 w-24">{cat.label}</span>
+                      <div className="flex-1 h-5 bg-white/5 rounded-full overflow-hidden">
                         <div
                           ref={el => barsRef.current[i] = el}
                           className="h-full rounded-full bg-gradient-to-r from-[--amber] to-[--gold]"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
-                      <span className="text-xs text-white/50 w-14 text-right">₹{cat.amount.toLocaleString('en-IN')}</span>
+                      <span className="text-sm text-white/50 w-16 text-right">₹{cat.amount.toLocaleString('en-IN')}</span>
                       <span
                         ref={el => statusRefs.current[i] = el}
-                        className={`text-xs w-5 h-5 rounded-full flex items-center justify-center ${
+                        className={`text-sm w-7 h-7 rounded-full flex items-center justify-center ${
                           cat.status === '✓' ? 'bg-green-500/10 text-green-400' : 'bg-yellow-500/10 text-yellow-400'
                         }`}
                       >
@@ -235,11 +225,11 @@ export default function Dashboard({ className = '' }) {
               </div>
 
               {/* Remaining */}
-              <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.03] border border-white/5">
-                <span className="text-sm text-white/40">Remaining</span>
-                <div className="flex items-center gap-3">
-                  <span ref={remainingRef} className="text-lg font-bold gradient-text font-[family-name:var(--font-syne)]">₹0</span>
-                  <button className="px-4 py-1.5 rounded-full bg-gradient-to-r from-[--amber] to-[--gold] text-black text-xs font-semibold hover:shadow-lg transition-all">
+              <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.03] border border-white/5">
+                <span className="text-base text-white/40">Remaining</span>
+                <div className="flex items-center gap-4">
+                  <span ref={remainingRef} className="text-xl font-bold gradient-text font-[family-name:var(--font-syne)]">₹0</span>
+                  <button className="px-5 py-2 rounded-full bg-gradient-to-r from-[--amber] to-[--gold] text-black text-sm font-semibold hover:shadow-lg transition-all">
                     Pay Remaining
                   </button>
                 </div>

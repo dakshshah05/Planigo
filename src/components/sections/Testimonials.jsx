@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function StarRating({ rating }) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex gap-1">
       {[1, 2, 3, 4, 5].map(star => (
         <span
           key={star}
@@ -24,19 +24,18 @@ function TestimonialCard({ testimonial }) {
   const initials = testimonial.name.split(' ').map(n => n[0]).join('');
 
   return (
-    <div className="shrink-0 w-[300px] md:w-[340px] glass rounded-2xl p-6 border border-white/5 hover:border-[--gold]/15 transition-all duration-300 mx-2">
-      <div className="flex items-center gap-3 mb-4">
-        {/* Avatar */}
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[--amber] to-[--gold] flex items-center justify-center text-black font-bold text-sm shrink-0">
+    <div className="shrink-0 w-[320px] md:w-[380px] glass rounded-2xl p-7 border border-white/5 hover:border-[--gold]/15 transition-all duration-300 mx-3">
+      <div className="flex items-center gap-4 mb-5">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[--amber] to-[--gold] flex items-center justify-center text-black font-bold text-sm shrink-0">
           {initials}
         </div>
         <div>
           <p className="text-sm font-semibold text-white/80">{testimonial.name}</p>
-          <p className="text-xs text-white/30">{testimonial.city}</p>
+          <p className="text-xs text-white/30 mt-0.5">{testimonial.city}</p>
         </div>
       </div>
       <StarRating rating={testimonial.rating} />
-      <p className="mt-3 text-sm text-white/50 italic leading-relaxed">
+      <p className="mt-4 text-sm text-white/50 italic leading-[1.8]">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
     </div>
@@ -68,13 +67,13 @@ export default function Testimonials({ className = '' }) {
 
   return (
     <section ref={sectionRef} className={`section-padding relative overflow-hidden ${className}`}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1280px] mx-auto">
         {/* Title */}
-        <div className="text-center mb-12">
-          <span className="text-xs uppercase tracking-[4px] text-[--gold]/60 mb-4 block">Testimonials</span>
+        <div className="text-center mb-16">
+          <span className="text-xs uppercase tracking-[4px] text-[--gold]/60 mb-5 block">Testimonials</span>
           <h2
             ref={titleRef}
-            className="text-3xl md:text-5xl font-extrabold font-[family-name:var(--font-syne)] text-white"
+            className="section-title font-extrabold font-[family-name:var(--font-syne)] text-white"
           >
             Travelers{' '}
             <span className="gradient-text">Love Planigo.</span>
@@ -83,7 +82,7 @@ export default function Testimonials({ className = '' }) {
       </div>
 
       {/* Row 1 — scroll left */}
-      <div className="group mb-4 overflow-hidden">
+      <div className="group mb-6 overflow-hidden">
         <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
           {[...row1, ...row1, ...row1].map((t, i) => (
             <TestimonialCard key={`r1-${i}`} testimonial={t} />

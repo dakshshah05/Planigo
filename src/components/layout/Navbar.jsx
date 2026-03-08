@@ -65,7 +65,7 @@ export default function Navbar({ className = '' }) {
             : 'bg-transparent'
         } ${className}`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 group" aria-label="Planigo Home">
             <PlanigLogo />

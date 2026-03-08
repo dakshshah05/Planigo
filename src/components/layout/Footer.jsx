@@ -20,11 +20,11 @@ export default function Footer({ className = '' }) {
         backgroundSize: '30px 30px',
       }} />
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-8">
+      <div className="relative max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-16 pt-20 pb-10">
         {/* Top gradient line */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[--gold]/30 to-transparent" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 mb-16">
           {/* Brand Column */}
           <div className="col-span-1">
             <div className="flex items-center gap-2.5 mb-4">

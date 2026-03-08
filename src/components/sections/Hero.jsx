@@ -1,6 +1,6 @@
 import { useRef, useEffect, Suspense, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, Text } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { stats } from '../../constants/data';
@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const cities = ['Delhi', 'Goa', 'Mumbai', 'Ooty', 'Hampi', 'Kochi', 'Manali', 'Jaipur'];
 
-function FloatingBox({ position, label, speed = 1, radius = 2 }) {
+function FloatingBox({ position, speed = 1, radius = 2 }) {
   const meshRef = useRef();
   const initialAngle = useRef(Math.random() * Math.PI * 2);
 
@@ -99,7 +99,6 @@ function Scene() {
       {cities.map((city, i) => (
         <FloatingBox
           key={city}
-          label={city}
           position={[
             Math.cos((i / cities.length) * Math.PI * 2) * 2,
             (Math.random() - 0.5) * 1.5,
@@ -143,7 +142,6 @@ export default function Hero({ className = '' }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Entry animations
       gsap.from(badgeRef.current, { y: 20, opacity: 0, delay: 0.1, duration: 0.6, ease: 'power3.out' });
 
       titleWordsRef.current.forEach((word, i) => {
@@ -160,7 +158,6 @@ export default function Hero({ className = '' }) {
         gsap.from(statCards, { x: 30, opacity: 0, stagger: 0.1, delay: 1.1, duration: 0.6 });
       }
 
-      // Count-up animations for stats
       stats.forEach((stat, i) => {
         if (statValuesRef.current[i]) {
           const obj = { val: 0 };
@@ -188,14 +185,12 @@ export default function Hero({ className = '' }) {
         }
       });
 
-      // Parallax on scroll
       gsap.to(titleRef.current, {
         y: -80,
         ease: 'none',
         scrollTrigger: { trigger: sectionRef.current, scrub: 0.5, start: 'top top', end: 'bottom top' }
       });
 
-      // Scroll indicator pulse
       gsap.to(scrollIndicatorRef.current, {
         y: 8,
         opacity: 0.3,
@@ -214,7 +209,7 @@ export default function Hero({ className = '' }) {
   return (
     <section
       ref={sectionRef}
-      className={`relative min-h-screen flex items-center overflow-hidden pt-20 ${className}`}
+      className={`relative min-h-screen flex items-center overflow-hidden ${className}`}
       id="explore"
     >
       {/* Background gradient */}
@@ -222,28 +217,28 @@ export default function Hero({ className = '' }) {
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[--gold]/5 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-[--cyan]/3 rounded-full blur-[100px]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row items-center gap-12 py-12">
+      <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col lg:flex-row items-center gap-16 pt-32 pb-24 lg:pt-40 lg:pb-32">
         {/* Left Content — 55% */}
         <div className="w-full lg:w-[55%]" ref={titleRef}>
           {/* Badge */}
-          <div ref={badgeRef} className="mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[--gold]/20 bg-[--gold]/5 text-xs text-[--gold] font-medium">
+          <div ref={badgeRef} className="mb-8">
+            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-[--gold]/20 bg-[--gold]/5 text-xs text-[--gold] font-medium tracking-wide">
               <span className="text-[--gold]">✦</span>
               AI-Powered Travel Planning — Now in Beta
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="font-[family-name:var(--font-syne)] font-extrabold text-[36px] md:text-[52px] lg:text-[72px] leading-[1.08] mb-6">
+          <h1 className="font-[family-name:var(--font-syne)] font-extrabold text-[40px] sm:text-[52px] md:text-[60px] lg:text-[72px] xl:text-[80px] leading-[1.1] mb-8 tracking-tight">
             {titleLines.map((line, lineIdx) => (
-              <span key={lineIdx} className="block overflow-hidden">
+              <span key={lineIdx} className="block overflow-hidden mb-1">
                 {line.text.split(' ').map((word, wIdx) => {
                   const currentWordIndex = wordIndex++;
                   return (
                     <span
                       key={wIdx}
                       ref={el => titleWordsRef.current[currentWordIndex] = el}
-                      className={`inline-block mr-[0.25em] ${line.gradient ? 'gradient-text' : 'text-white'}`}
+                      className={`inline-block mr-[0.3em] ${line.gradient ? 'gradient-text' : 'text-white'}`}
                       style={{ willChange: 'transform, opacity' }}
                     >
                       {word}
@@ -255,40 +250,40 @@ export default function Hero({ className = '' }) {
           </h1>
 
           {/* Description */}
-          <p ref={descRef} className="text-lg text-white/50 max-w-lg mb-8 leading-relaxed">
+          <p ref={descRef} className="text-base sm:text-lg text-white/50 max-w-xl mb-10 leading-[1.8]">
             Planigo&apos;s AI builds your perfect trip in seconds — hotels, transport, food &amp; activities,
             all within your budget. One tap. Zero stress.
           </p>
 
           {/* CTAs */}
-          <div ref={ctaRef} className="flex flex-wrap gap-4 mb-12">
-            <button className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[--amber] via-[--gold] to-[--orange] text-black font-semibold text-sm hover:shadow-[0_0_30px_rgba(255,179,0,0.4)] transition-all duration-300 hover:scale-105">
+          <div ref={ctaRef} className="flex flex-wrap gap-5 mb-14">
+            <button className="px-8 py-4 rounded-full bg-gradient-to-r from-[--amber] via-[--gold] to-[--orange] text-black font-semibold text-sm hover:shadow-[0_0_30px_rgba(255,179,0,0.4)] transition-all duration-300 hover:scale-105">
               🚀 Plan My Trip Free →
             </button>
-            <button className="px-8 py-3.5 rounded-full border border-white/15 text-white/70 text-sm hover:border-white/30 hover:text-white transition-all duration-300 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center text-xs">▶</span>
+            <button className="px-8 py-4 rounded-full border border-white/15 text-white/70 text-sm hover:border-white/30 hover:text-white transition-all duration-300 flex items-center gap-3">
+              <span className="w-7 h-7 rounded-full border border-white/30 flex items-center justify-center text-xs">▶</span>
               Watch How It Works
             </button>
           </div>
 
           {/* Stats */}
-          <div ref={statsRef} className="flex flex-wrap gap-4">
+          <div ref={statsRef} className="flex flex-wrap gap-5">
             {stats.map((stat, i) => (
-              <div key={i} className="stat-card glass rounded-xl px-6 py-4 min-w-[130px]">
+              <div key={i} className="stat-card glass rounded-2xl px-8 py-5 min-w-[150px]">
                 <div
                   ref={el => statValuesRef.current[i] = el}
-                  className="text-2xl font-bold font-[family-name:var(--font-syne)] gradient-text"
+                  className="text-3xl font-bold font-[family-name:var(--font-syne)] gradient-text"
                 >
                   0
                 </div>
-                <div className="text-xs text-white/40 mt-1">{stat.label}</div>
+                <div className="text-xs text-white/40 mt-2">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Right Panel — 45% Three.js */}
-        <div className="w-full lg:w-[45%] h-[400px] lg:h-[600px] hidden md:block">
+        <div className="w-full lg:w-[45%] h-[350px] sm:h-[450px] lg:h-[550px] hidden md:block">
           <Suspense fallback={
             <div className="w-full h-full flex items-center justify-center">
               <div className="w-8 h-8 border-2 border-[--gold] border-t-transparent rounded-full animate-spin" />
@@ -302,9 +297,9 @@ export default function Hero({ className = '' }) {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10">
         <span className="text-[10px] uppercase tracking-[4px] text-white/30">Scroll</span>
-        <div ref={scrollIndicatorRef} className="w-px h-8 bg-gradient-to-b from-[--gold]/60 to-transparent" />
+        <div ref={scrollIndicatorRef} className="w-px h-10 bg-gradient-to-b from-[--gold]/60 to-transparent" />
       </div>
     </section>
   );
