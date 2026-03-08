@@ -197,19 +197,9 @@ export default function IntroAnimation({ onComplete }) {
           style={{ top: '-10px' }}
         />
 
-        {/* Logo SVG */}
+        {/* Logo */}
         <div ref={logoRef} className="mb-4">
-          <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
-            <defs>
-              <linearGradient id="introGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FF6B00" />
-                <stop offset="50%" stopColor="#FFB300" />
-                <stop offset="100%" stopColor="#00D4FF" />
-              </linearGradient>
-            </defs>
-            <circle cx="32" cy="32" r="28" stroke="url(#introGrad)" strokeWidth="3" fill="none"/>
-            <path d="M24 18 L42 32 L24 46 Z" fill="url(#introGrad)"/>
-          </svg>
+          <img src="/icon.jpg" alt="Planigo" className="w-14 h-14 rounded-full object-cover" />
         </div>
 
         {/* PLANIGO letters */}
