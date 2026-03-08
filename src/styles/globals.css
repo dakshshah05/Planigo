@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap");
 @import "tailwindcss";
+@source "../../index.html";
+@source "../**/*.{js,jsx}";
 
 @theme {
   --color-orange: #ff8c00;
@@ -35,7 +37,7 @@
   50%      { box-shadow: 0 0 0 10px rgba(255, 179, 0, 0); }
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Tailwind v4 Preflight already resets margins/padding inside @layer base */
 
 :root {
   --orange: #ff8c00;
