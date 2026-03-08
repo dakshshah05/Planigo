@@ -214,7 +214,7 @@ export default function Hero({ className = '' }) {
   return (
     <section
       ref={sectionRef}
-      className={`relative min-h-screen flex items-center overflow-hidden ${className}`}
+      className={`relative min-h-screen flex items-center overflow-hidden pt-20 ${className}`}
       id="explore"
     >
       {/* Background gradient */}
@@ -222,7 +222,7 @@ export default function Hero({ className = '' }) {
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[--gold]/5 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-[--cyan]/3 rounded-full blur-[100px]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row items-center gap-8 pt-24 lg:pt-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row items-center gap-12 py-12">
         {/* Left Content — 55% */}
         <div className="w-full lg:w-[55%]" ref={titleRef}>
           {/* Badge */}
@@ -234,7 +234,7 @@ export default function Hero({ className = '' }) {
           </div>
 
           {/* Title */}
-          <h1 className="font-[family-name:var(--font-syne)] font-extrabold text-[44px] md:text-[64px] lg:text-[88px] leading-[1.05] mb-6">
+          <h1 className="font-[family-name:var(--font-syne)] font-extrabold text-[36px] md:text-[52px] lg:text-[72px] leading-[1.08] mb-6">
             {titleLines.map((line, lineIdx) => (
               <span key={lineIdx} className="block overflow-hidden">
                 {line.text.split(' ').map((word, wIdx) => {

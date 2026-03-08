@@ -83,8 +83,8 @@ export default function Testimonials({ className = '' }) {
       </div>
 
       {/* Row 1 — scroll left */}
-      <div className="group mb-4">
-        <div className="flex animate-marquee hover:[animation-play-state:paused]">
+      <div className="group mb-4 overflow-hidden">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
           {[...row1, ...row1, ...row1].map((t, i) => (
             <TestimonialCard key={`r1-${i}`} testimonial={t} />
           ))}
@@ -92,8 +92,8 @@ export default function Testimonials({ className = '' }) {
       </div>
 
       {/* Row 2 — scroll right */}
-      <div className="group">
-        <div className="flex animate-marquee2 hover:[animation-play-state:paused]">
+      <div className="group overflow-hidden">
+        <div className="flex w-max animate-marquee2 hover:[animation-play-state:paused]">
           {[...row2, ...row2, ...row2].map((t, i) => (
             <TestimonialCard key={`r2-${i}`} testimonial={t} />
           ))}

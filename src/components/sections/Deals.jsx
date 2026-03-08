@@ -40,6 +40,22 @@ export default function Deals({ className = '' }) {
 
   return (
     <section ref={sectionRef} className={`section-padding relative ${className}`} id="deals">
+      <style>{`
+        .deal-flip-inner {
+          transform-style: preserve-3d;
+          transition: transform 0.7s ease-out;
+        }
+        .deal-card:hover .deal-flip-inner {
+          transform: rotateY(180deg);
+        }
+        .deal-face {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+        .deal-face-back {
+          transform: rotateY(180deg);
+        }
+      `}</style>
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <div className="text-center mb-16">
@@ -58,18 +74,12 @@ export default function Deals({ className = '' }) {
           {deals.map((deal) => (
             <div
               key={deal.name}
-              className="deal-card group"
+              className="deal-card"
               style={{ perspective: '1000px' }}
             >
-              <div
-                className="relative w-full h-64 transition-transform duration-700 ease-out"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
+              <div className="deal-flip-inner relative w-full h-64">
                 {/* Front Face */}
-                <div
-                  className="absolute inset-0 glass rounded-2xl p-6 flex flex-col border border-white/5 group-hover:border-[--gold]/10"
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
+                <div className="deal-face absolute inset-0 glass rounded-2xl p-6 flex flex-col border border-white/5">
                   <div className="flex items-start justify-between mb-4">
                     <span className="text-3xl">{deal.emoji}</span>
                     <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[--amber] to-[--gold] text-black text-xs font-bold">
@@ -82,10 +92,7 @@ export default function Deals({ className = '' }) {
                 </div>
 
                 {/* Back Face */}
-                <div
-                  className="absolute inset-0 rounded-2xl p-6 flex flex-col justify-center bg-gradient-to-br from-[--amber] via-[--gold] to-[--orange]"
-                  style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                >
+                <div className="deal-face deal-face-back absolute inset-0 rounded-2xl p-6 flex flex-col justify-center bg-gradient-to-br from-[--amber] via-[--gold] to-[--orange]">
                   <h3 className="text-lg font-bold font-[family-name:var(--font-syne)] text-black mb-3">{deal.name}</h3>
                   <p className="text-sm text-black/70 leading-relaxed mb-4">{deal.detail}</p>
                   <button className="mt-auto self-start px-5 py-2 rounded-full bg-black text-[--gold] text-sm font-semibold hover:bg-black/80 transition-colors">
@@ -93,13 +100,6 @@ export default function Deals({ className = '' }) {
                   </button>
                 </div>
               </div>
-
-              {/* CSS hover trigger for 3D flip */}
-              <style>{`
-                .deal-card:hover .relative {
-                  transform: rotateY(180deg);
-                }
-              `}</style>
             </div>
           ))}
         </div>

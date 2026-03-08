@@ -87,6 +87,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -134,12 +135,18 @@ body {
 }
 
 .section-padding {
-  padding: 120px 5%;
+  padding: 100px 24px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 640px) {
   .section-padding {
-    padding: 80px 5%;
+    padding: 100px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-padding {
+    padding: 64px 16px;
   }
 }
 
