@@ -2,22 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { navLinks } from '../../constants/data';
 
-function PlanigLogo() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FF6B00" />
-          <stop offset="50%" stopColor="#FFB300" />
-          <stop offset="100%" stopColor="#00D4FF" />
-        </linearGradient>
-      </defs>
-      <circle cx="32" cy="32" r="28" stroke="url(#logoGrad)" strokeWidth="3" fill="none"/>
-      <path d="M24 18 L42 32 L24 46 Z" fill="url(#logoGrad)"/>
-    </svg>
-  );
-}
-
 export default function Navbar({ className = '' }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,11 +51,8 @@ export default function Navbar({ className = '' }) {
       >
         <div className="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group" aria-label="Planigo Home">
-            <PlanigLogo />
-            <span className="text-xl font-bold font-[family-name:var(--font-syne)] gradient-text">
-              planigo
-            </span>
+          <a href="#" className="flex items-center group" aria-label="Planigo Home">
+            <img src="/planigo.png" alt="Planigo" className="h-10 md:h-12 w-auto" />
           </a>
 
           {/* Desktop Links */}

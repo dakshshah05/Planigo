@@ -27,21 +27,8 @@ export default function Footer({ className = '' }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 mb-16">
           {/* Brand Column */}
           <div className="col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
-                <defs>
-                  <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FF6B00" />
-                    <stop offset="50%" stopColor="#FFB300" />
-                    <stop offset="100%" stopColor="#00D4FF" />
-                  </linearGradient>
-                </defs>
-                <circle cx="32" cy="32" r="28" stroke="url(#footerGrad)" strokeWidth="3" fill="none"/>
-                <path d="M24 18 L42 32 L24 46 Z" fill="url(#footerGrad)"/>
-              </svg>
-              <span className="text-lg font-bold font-[family-name:var(--font-syne)] gradient-text">
-                planigo
-              </span>
+            <div className="mb-4">
+              <img src="/planigo.png" alt="Planigo" className="h-10 w-auto" />
             </div>
             <p className="text-sm text-white/40 mb-6 leading-relaxed">
               AI travel planning for every Indian budget.
